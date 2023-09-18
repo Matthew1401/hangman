@@ -4,6 +4,71 @@
     import HeartsContainer from '../components/HeartsContainer.vue'
     import Footer from '../components/Footer.vue'
     import MissedLetters from '../components/MissedLetters.vue';
+    import { onMounted, reactive } from 'vue'
+    
+    const data = reactive({
+    lifes: 4,
+    correctLetters: [],
+    missedLetters: [],
+    password: 'gorąco jesienią lol'
+  })
+  data.password = data.password.toUpperCase()
+
+
+  const substractLife = () => {
+    data.lifes--
+    if (data.lifes === 0) {
+      if (confirm('U lose') === true) {
+        window.location.reload();
+      } else {
+        window.location.reload();
+      }
+    }
+  }
+
+
+  const checkWinCondition = () => {
+    const passwordWithoutDups = Array.from(new Set(data.password.split('')));
+    if (passwordWithoutDups.includes(' ')) {
+      passwordWithoutDups.splice(passwordWithoutDups.indexOf(' '), 1)
+    }
+    if (passwordWithoutDups.length === data.correctLetters.length) {
+      if (confirm('U WON, congrats!') === true) {
+        window.location.reload();
+      } else {
+        window.location.reload();
+      }
+    }
+  };
+
+
+  const checkIfTheLetterIsCorrect = (letter) => {
+    if (data.password.includes(letter)) {
+      if (!data.correctLetters.includes(letter)) {
+        data.correctLetters.push(letter)
+        checkWinCondition()
+      }
+      return
+    }
+    else {
+      if (!data.missedLetters.includes(letter)) {
+        data.missedLetters.push(letter)
+        substractLife()
+      }
+      return
+    }
+  }
+
+
+  onMounted(() => {
+    window.addEventListener('keypress', (e) => {
+      const supposedLetter = String.fromCharCode(e.keyCode);
+      if (supposedLetter.toUpperCase() !== supposedLetter.toLowerCase() || supposedLetter.codePointAt(0) > 127) {
+        checkIfTheLetterIsCorrect(supposedLetter.toUpperCase())
+      }
+    });
+  });
+
 </script>
 
 <template>
