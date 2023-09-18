@@ -6,10 +6,16 @@
   import { onMounted, reactive } from 'vue'
   import { useRouter } from "vue-router"
   
-  const router = useRouter()
+  const list = ["wolność kolego", "życie jest czadowe", "średniozmineralizowana", "niezdyscyplinowanie", "bombowo", "oksymoron"];
 
+  const router = useRouter()
   const navigateToPlayAgain = (isWin) => {
     router.push(`/gameOn/playAgain/${isWin}`)
+  }
+
+
+  Array.prototype.random = function () {
+    return this[Math.floor((Math.random()*this.length))];
   }
 
 
@@ -17,9 +23,8 @@
     lifes: 4,
     correctLetters: [],
     missedLetters: [],
-    password: 'gorąco jesienią lol'
+    password: list.random().toUpperCase()
   })
-  data.password = data.password.toUpperCase()
 
 
   const substractLife = () => {

@@ -9,7 +9,7 @@
         <span>Nietrafione litery: </span>
         <span
           v-for="letter in missedLetters"
-          :key="'l' + letter"
+          :key="'l_' + letter"
           class="miss"
         >
           {{ letter }}
