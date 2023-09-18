@@ -7,7 +7,7 @@
 <template>
   <div class="app-container">
     <div class="welcome-page">
-        <h1>Witaj na stronie głównej gry</h1>
+        <h1>Wygrałeś! Gratulacje.</h1>
     </div>
 
     <div class="play">
