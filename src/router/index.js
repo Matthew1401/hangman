@@ -21,7 +21,7 @@ const router = createRouter({
             component: GameOnView
         },
          {
-            path:"/gameOn/playAgain",
+            path:"/gameOn/playAgain/:isWin",
             name: "playAgain",
             component: PlayAgainView
         },

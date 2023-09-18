@@ -29,14 +29,14 @@
     }
 
     .play {
-        width: 100;
+        width: 100%;
         text-align: center;
         font-size: 50px;
     }
 
     .play a {
         text-decoration: none;
-        width: 1000px;
+        width: 100px;
         padding: 15px;
         border: 2px solid gray;
         border-radius: 20px;

@@ -8,9 +8,10 @@
   
   const router = useRouter()
 
-  const navigateToPlayAgain = () => {
-    router.push(`/gameOn/playAgain`)
+  const navigateToPlayAgain = (isWin) => {
+    router.push(`/gameOn/playAgain/${isWin}`)
   }
+
 
   const data = reactive({
     lifes: 4,
@@ -24,7 +25,7 @@
   const substractLife = () => {
     data.lifes--
     if (data.lifes === 0) {
-      navigateToPlayAgain()
+      navigateToPlayAgain('lose')
     }
   }
 
@@ -35,7 +36,7 @@
       passwordWithoutDups.splice(passwordWithoutDups.indexOf(' '), 1)
     }
     if (passwordWithoutDups.length === data.correctLetters.length) {
-      navigateToPlayAgain()
+      navigateToPlayAgain('win')
     }
   };
 
